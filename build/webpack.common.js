@@ -1,4 +1,6 @@
 const path = require('path')
+
+const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -16,17 +18,30 @@ module.exports = env => {
     module: {
       rules: [
         {
+          test: /\.vue$/,
+          loader: 'vue-loader'
+        },
+        {
           test: /\.jsx?$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react']
+              presets: ['@babel/preset-env']
             }
           }
         },
         {
-          test: /\.scss$/,
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          loader: 'ts-loader',
+          // options: {
+          //   appendTsSuffixTo: [/\.vue$/]
+          // }
+        },
+        {
+          test: /\.s?css$/,
+          exclude: /node_modules/,
           use: [
             MiniCssExtractPlugin.loader,
             {
@@ -63,13 +78,18 @@ module.exports = env => {
       ]
     },
     resolve: {
-      extensions: ['.js', '.jsx', '.json']
+      // extensions: ['.ts', '.js', '.vue', '.json'],
+      extensions: ['.js', '.vue', '.json'],
+      alias: {
+        '@': path.join('../src')
+      }
     },
     plugins: [
+      new VueLoaderPlugin(),
       new HtmlWebpackPlugin({
         template: pathResolve('../public/index.html'),
         filename: 'index.html',
-        title: 'react-stack'
+        title: 'vue-stack'
       }),
       new MiniCssExtractPlugin({
         filename: 'assets/css/[name].style.css',

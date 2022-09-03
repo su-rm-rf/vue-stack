@@ -9,8 +9,8 @@ module.exports = env => {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
-      port: 8095,
-      // historyApiFallback: true,
+      port: 8099,
+      historyApiFallback: true,
       static: {
         // directory: '',
         // publicPath: '/dist/'
