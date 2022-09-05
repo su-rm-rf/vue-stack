@@ -13,7 +13,7 @@ module.exports = env => {
       path: pathResolve('../dist'), // 使用绝对路径
       filename: 'assets/js/[name].code.js',
       chunkFilename: 'assets/js/[name].bundle.js',
-      publicPath: ''
+      // publicPath: '/vue-stack/'
     },
     module: {
       rules: [
@@ -35,22 +35,28 @@ module.exports = env => {
           test: /\.tsx?$/,
           exclude: /node_modules/,
           loader: 'ts-loader',
-          // options: {
-          //   appendTsSuffixTo: [/\.vue$/]
-          // }
+          options: {
+            appendTsSuffixTo: [/\.vue$/]
+          }
         },
         {
-          test: /\.s?css$/,
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader']
+        },
+        {
+          test: /\.scss$/,
           exclude: /node_modules/,
           use: [
             MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader',
-              options: {
-                // modules: {
-                //   localIdentName: '[local]_[hash:base64:8]'
-                // }
-              }
+              // options: {
+              //   esModule: false,
+              //   modules: {
+              //     auto: false, // 
+              //     localIdentName: '[local]_[hash:base64:8]' // 自定义生产的类名
+              //   }
+              // }
             },
             {
               loader: 'postcss-loader',
@@ -74,12 +80,20 @@ module.exports = env => {
             },
             'sass-loader'
           ]
+        },
+        {
+          test: /\.(jpg|png|gif|svg)$/,
+          type: 'asset',
+          parser: {
+            dataUrlCondition: {
+              maxSize: 10 * 1024
+            }
+          }
         }
       ]
     },
     resolve: {
-      // extensions: ['.ts', '.js', '.vue', '.json'],
-      extensions: ['.js', '.vue', '.json'],
+      extensions: ['.ts', '.js', '.vue', '.json'],
       alias: {
         '@': path.join('../src')
       }

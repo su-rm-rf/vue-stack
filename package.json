@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack serve --config ./build/webpack.dev.js",
     "build": "webpack --config ./build/webpack.prod.js",
+    "analyzer": "webpack --env analyzer=true --config ./build/webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,8 +15,10 @@
   "devDependencies": {
     "@babel/core": "^7.18.13",
     "@babel/preset-env": "^7.18.10",
+    "@vue/cli": "^5.0.8",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
     "postcss-loader": "^7.0.1",
@@ -26,6 +29,7 @@
     "ts-loader": "^9.3.1",
     "vue-loader": "^17.0.0",
     "webpack": "^5.74.0",
+    "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.10.0",
     "webpack-merge": "^5.8.0"
@@ -33,6 +37,7 @@
   "dependencies": {
     "element-plus": "^2.2.15",
     "typescript": "^4.8.2",
+    "vform3-builds": "^3.0.8",
     "vue": "^3.2.37",
     "vue-router": "^4.1.5"
   }
