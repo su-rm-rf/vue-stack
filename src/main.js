@@ -1,3 +1,10 @@
-import axios from 'axios'
+import { createApp } from 'vue'
 
-console.log(axios)
+import router from './router/index'
+
+import './css/index.scss'
+import App from './App'
+
+const root = createApp(App)
+root.use(router)
+root.mount('#root')

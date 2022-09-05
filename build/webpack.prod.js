@@ -1,23 +1,22 @@
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common')
 
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
 module.exports = env => {
   const prod_config = {
     mode: 'production',
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
-          }
-        }
+    plugins: [],
+    optimization: {
+      minimizer: [
+        new CssMinimizerPlugin()
       ]
-    },
+    }
+  }
+
+  if (env && env.analyzer) {
+    prod_config.plugins.push( new BundleAnalyzerPlugin() )
   }
 
   return merge(common(env), prod_config)

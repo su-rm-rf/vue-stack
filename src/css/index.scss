@@ -1,0 +1,12 @@
+@import './reset.scss';
+
+$base_color: #399;
+
+#headerNav {
+  display: flex;
+  justify-content: space-around;
+
+  a {
+    background: $base_color;
+  }
+}
