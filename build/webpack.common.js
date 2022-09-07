@@ -4,26 +4,29 @@ const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const PKG = require('../package.json')
+
 module.exports = env => {
   return {
     entry: './src/main.js',
     output: {
       path: path.resolve(__dirname, '../dist'),
-      filename: 'assets/js/[name].code.js',
-      chunkFilename: 'assets/js/[name].bundle.js'
+      filename: 'assets/js/[name]_[contenthash:8].code.js',
+      chunkFilename: 'assets/js/[name]_[contenthash:8].bundle.js',
+      publicPath: PKG.base,
     },
     module: {
       rules: [
-        // {
-        //   test: /\.js$/,
-        //   exclude: /node_modules/,
-        //   use: {
-        //     loader: 'babel-loader',
-        //     options: {
-        //       presets: ['@babel/preset-env']
-        //     }
-        //   }
-        // },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        },
         {
           test: /\.vue$/,
           use: 'vue-loader'
@@ -81,11 +84,11 @@ module.exports = env => {
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, '../public/index.html'),
         filename: 'index.html',
-        title: 'vue3-webpack'
+        title: PKG.name
       }),
       new MiniCssExtractPlugin({
-        filename: 'assets/css/[name].style.css',
-        chunkFilename: 'assets/css/[name].css'
+        filename: 'assets/css/[name]_[contenthash:8].style.css',
+        chunkFilename: 'assets/css/[name]_[contenthash:8].css'
       })
     ],
     resolve: {

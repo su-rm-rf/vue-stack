@@ -1,12 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router"
 
+import PKG from '../../package.json'
+
 import Home from '../components/Home'
 import Business from '../components/Business'
 import About from '../components/About'
-
-// const Home = { template: '<div>home</div>' }
-// const Business = { template: '<div>business</div>' }
-// const About = { template: '<div>about</div>' }
 
 const routes = [
   {
@@ -20,8 +18,9 @@ const routes = [
   }
 ]
 
+const base = PKG.base
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(base),
   routes
 })
 

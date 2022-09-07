@@ -13,11 +13,19 @@ module.exports = env => {
     // },
     devServer: {
       port: 9900,
-      historyApiFallback: true,
+      historyApiFallback: {
+        rewrites: [
+          {
+            from: /./, to: common(env).output.publicPath
+          }
+        ]
+      }, 
+      // 仅供调试生产环境的bug
+      // static: {
+      //   directory: path.join(__dirname, '../dist')
+      // },
       proxy: {
-        '/api': {
-          
-        }
+
       }
     },
   }

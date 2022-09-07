@@ -23,5 +23,20 @@ dev缓存
   mini-css-extract-plugin
 压缩css
   css-minimizer-webpack-plugin
-代码拆分
+hash
+  css使用contenthash，仅当css内容变化时才更新文件
+
+js代码拆分
   optmization.splitChunks
+
+hash
+contenthash
+chunkhash
+
+
+# 二级目录vue-router刷新404
+  output.public: base
+  开发环境
+  生产环境 
+    output.public: './'或CDN目录
+    try_files $uri /index.html
