@@ -28,8 +28,8 @@ UI库 element
 # 业务TODO
 人员管理系统CRUD
 
-Vue + Element + TS + ES6 + Sass + Webpack
-=> Webpack + ES6 + Vue + Saas + TS + Element
+Vue2 + Element + TS + ES6 + Sass + Webpack
+=> Webpack + ES6 + Vue3 + Saas + TS + Element
 
 vue-resource
 axios
