@@ -10,10 +10,10 @@ UI库 element
 
 # 搭建
 搭建Webpack运行环境
-集成Vue
+集成CSS预处理
 集成Babel
 集成Typescript
-集成CSS预处理
+集成Vue
 集成Vue-Router
 集成Vuex
 集成Element Plus
